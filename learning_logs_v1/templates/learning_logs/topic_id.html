@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主题列表</title>
+</head>
+{%extends "learning_logs/base.html"%}
+{% block header %}
+    <h2>{{ topic }}</h2>
+{% endblock header %}
+{% block content %}
+    <p>
+        <a href="{% url 'learning_logs_v1:new_entry' topic.id %}">add new entry</a>
+    </p>
+    <ul>
+        {% for entries in entries %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        {{ entries.date_added|date:'M d,Y H:i' }}
+                        <small>
+                            <a href="{% url 'learning_logs_v1:edit_entry' entries.id %}"><button>修改</button></a>
+                            <a href="/delete_entry/?id={{ entries.id }}"><button>删除</button></a>
+                        </small>
+                    </h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <font size="5">{{ entries.text|linebreaks }}</font>
+            </div>
+        {% empty %}
+        <li> 即将添加主题内容。。。</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+</body>
+</html>

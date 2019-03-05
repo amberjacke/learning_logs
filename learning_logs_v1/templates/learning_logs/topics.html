@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主题</title>
+</head>
+{%extends "learning_logs/base.html"%}
+{% load bootstrap3 %}
+{% block header %}
+    <h1>学习主题</h1>
+{% endblock header %}
+{% block content %}
+    <ul>
+        {% for topics in topics_list %}
+        <li>
+            <h3>
+                <a href="{% url 'learning_logs_v1:topic_id' topics.id %}">{{ topics }}</a>
+            </h3>
+        </li>
+        {% empty %}
+        <li> 即将添加主题。</li>
+        {% endfor %}
+    </ul>
+    <ul class="pagination" id="pager">
+        {#上一页按钮开始#}
+        {# 如果当前页有上一页#}
+        {% if topics_list.has_previous %}
+            {#  当前页的上一页按钮正常使用#}
+            <li class="previous"><a href="/topics/?page={{ topics_list.previous_page_number }}">上一页</a></li>
+        {% else %}
+            {# 当前页的不存在上一页时,上一页的按钮不可用#}
+            <li class="previous disabled"><a href="#">上一页</a></li>
+        {% endif %}
+        {#上一页按钮结束#}
+        {# 页码开始#}
+        {% for num in paginator.page_range %}
+
+            {% if num == currentPage %}
+                <li class="item active"><a href="/topics/?page={{ num }}">{{ num }}</a></li>
+            {% else %}
+                <li class="item"><a href="/topics/?page={{ num }}">{{ num }}</a></li>
+
+            {% endif %}
+        {% endfor %}
+        {# 页码结束 #}
+        {# 下一页按钮开始 #}
+        {% if topics_list.has_next %}
+            <li class="next"><a href="/topics/?page={{ topics_list.next_page_number }}">下一页</a></li>
+        {% else %}
+            <li class="next disabled"><a href="#">下一页</a></li>
+        {% endif %}
+        {# 下一页按钮结束#}
+    </ul>
+</div>
+
+    <h3>
+        <a href ="{% url 'learning_logs_v1:new_topic' %}">Add a new topic:</a>
+    </h3>
+{% endblock content %}
+</body>
+</html>

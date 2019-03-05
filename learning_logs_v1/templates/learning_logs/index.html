@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习笔记</title>
+</head>
+<body>
+{% extends "learning_logs/base.html"%}
+{%block header%}
+    <div class="jumbotron">
+        <h1>Track your learning.</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <h2>
+        <a href="{% url 'users:register' %}">注册一个用户</a> to make your own Learning Log,
+        and list the topics you're learing about.
+    </h2>
+    <h2>
+        Whenever you learn something new about a topic,make an entry summarizing what you're learned.
+    </h2>
+<p><font size="6">学习日志</font></p>
+<font size="5">学习，是指通过阅读、听讲、思考、研究、实践等途径获得知识或技能的过程。学习分为狭义与广义两种：
+狭义：通过阅读、听讲、研究、观察、理解、探索、实验、实践等手段获得知识或技能的过程，是一种使个体可以得到持续变化（知识和技能，方法与过程，情感与价值的改善和升华）的行为方式。例如通过学校教育获得知识的过程。
+    广义：是人在生活过程中，通过获得经验而产生的行为或行为潜能的相对持久的行为方式。</font>
+{%endblock content%}
+</body>
+</html>
