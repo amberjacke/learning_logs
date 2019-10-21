@@ -31,7 +31,7 @@ django-pure-pagination==0.3.0
 django-reversion==3.0.0
 django-seed==0.1.9
 django-tables2==1.21.2
-djangorestframework==3.8.2
+djangorestframework==3.9.1
 docopt==0.6.2
 et-xmlfile==1.0.1
 Faker==0.8.17
